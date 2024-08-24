@@ -5,18 +5,6 @@ def cesar (text, shift):
     for i in range(len(text)):
         char = text[i]
 
-        # if((ord(char) + shift) > 255):
-        #     shift = shift - 255
-
-        # if (char == " "):
-        #     result += " "
-
-        # else:
-        #     result += chr(ord(char)+shift)
-
-
-
-        char = text[i]
         if (char == " "):
             result += " "
         elif (char.isupper()):
