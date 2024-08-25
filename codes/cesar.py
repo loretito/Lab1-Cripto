@@ -1,4 +1,7 @@
-# sudo python3 cesar.py "criptografía y seguridad en redes" 9 
+import sys
+
+message = sys.argv[1] 
+shift = sys.argv[2]
 
 def cesar (text, shift):
     result = ""
@@ -16,10 +19,6 @@ def cesar (text, shift):
         else:
             result += chr(ord(char)+shift)
 
-    print(result)
+    return(result)
 
-cesar("criptografía y seguridad en redes", 9)
-
-cesar("Criptografía y Seguridad en Redes", 9)
-
-cesar("hola 1 @ )", 2)
+print(cesar(message, int(shift)))
