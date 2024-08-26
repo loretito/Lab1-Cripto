@@ -1,18 +1,22 @@
-# sudo python3 pingv4.py "larycxpajotj h bnpdarmjm nw anmnb"
-
 from scapy.all import *
+import time
+import os
+import random
 import sys
 
-# Obtener el mensaje desde la línea de comandos
 message = sys.argv[1]
 
-# Crear el paquete ICMP
-icmp_packet = IP(dst="8.8.8.8")/ICMP()/message
+def send_data(data):
+    for char in data:
+        random_size = random.randint(30,47)
+        filled = os.urandom(random_size)
 
-# Enviar el paquete
-send(icmp_packet)
-send(icmp_packet)
-send(icmp_packet)
+        padded_data = char.encode() + filled
 
-# Mostrar el mensaje en la consola
-print(f"Mensaje enviado: {message}")
+        pkt = IP(dst="8.8.8.8")/ICMP()/Raw(load=padded_data)
+        send(pkt)
+
+        time.sleep(random.randint(1,2))
+
+send_data(message)        
+print("\nMensaje enviado")
