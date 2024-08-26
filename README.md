@@ -3,12 +3,12 @@ By: Loreto Ñancucheo
 
 ## Actividad 1
 ```bash
-sudo python3 cesar.py "criptografía y seguridad en redes" 9 
+sudo python3 cesar.py "criptografia y seguridad en redes" 9 
 ```
 
 ## Actividad 2
 ```bash
-sudo python3 pingv4.py "larycxpajotj h bnpdarmjm nw anmnb"
+sudo python3 pingv4.py "larycxpajorj h bnpdarmjm nw anmnb"
 ```
 
 ## Actividad 3
