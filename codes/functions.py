@@ -38,9 +38,9 @@ def cesar(text, shift, cypher=True):
         elif char.islower():
             base = ord('a')
         elif char.isdigit():
-            return str((int(char) + shift) % 10)
+            return str((int(char) + (shift if cypher else -shift)) % 10)
         else:
-            return chr(ord(char) + shift)
+            return chr(ord(char) + (shift if cypher else -shift))
         return chr((ord(char) - base + (shift if cypher else -shift)) % 26 + base)
 
     result = ""
