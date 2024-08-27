@@ -1,5 +1,5 @@
 import sys
-from scapy.all import *
+from scapy.all import ICMP, rdpcap, Raw, IP
 from functions import evaluate_consistency, cesar
 
 if len(sys.argv) < 2:

