@@ -12,13 +12,18 @@ phrase = ""
 
 for package in packages:
     if ICMP in package and package[IP].dst == "8.8.8.8":
-        if Raw in package:  
+        if Raw in package:
             data = package[Raw].load
-            word = data.decode('utf-8', errors='ignore')
-            if word:  # Verifica que no esté vacío
-                first_letter = word[0]
-                phrase+= first_letter
-          
+            
+            timestamp = data[:8]
+            
+            content = data[8:]
+            
+            first_letter = content[0:1].decode('utf-8', errors='ignore')
+            
+            if first_letter:  
+                phrase += first_letter
+                
 print(f"0: \t{phrase}")
 
 for i in range(len(phrase)):
